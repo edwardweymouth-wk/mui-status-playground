@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
+      - name: Setup Credentials
+        uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
@@ -30,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
       - name: Install modules
         run: yarn --ignore-scripts
       - name: Prettier check
@@ -41,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
       - name: Install modules
         run: yarn --ignore-scripts
       - name: Run ESLint
