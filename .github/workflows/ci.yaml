@@ -34,7 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
       - name: npm token
         run: |
           echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .npmrc
