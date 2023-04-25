@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import { Navbar } from './components/NavBar'
 
 export default function App() {
   return (
@@ -20,22 +21,7 @@ export default function App() {
 function Layout() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
       <hr />
       <Outlet />
     </div>
