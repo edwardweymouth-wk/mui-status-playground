@@ -39,9 +39,9 @@ jobs:
           echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .npmrc
           echo "//workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/:$(curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PAT }} https://workivaeast.jfrog.io/workivaeast/api/npm/auth/)" >> .npmnrc
       - name: Install modules
-        run: yarn --ignore-scripts
+        run: npm install
       - name: Prettier check
-        run: yarn format:ci
+        run: npm run format:ci
 
   # Basic Lint check
   # lint:
