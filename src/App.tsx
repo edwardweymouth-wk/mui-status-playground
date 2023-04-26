@@ -17,10 +17,15 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import { Link } from 'react-router-dom'
 
 import RouterStack from './components/RouterStack'
+
+interface Route {
+  path: string
+  label: string
+  icon: React.ReactNode
+}
 
 const drawerWidth = 240
 
@@ -93,6 +98,19 @@ const Drawer = styled(MuiDrawer, {
   }),
 }))
 
+const routes: Array<Route> = [
+  {
+    label: 'Linear stepper',
+    path: '/linear-stepper',
+    icon: <InboxIcon />,
+  },
+  {
+    path: '/dashboard',
+    label: 'Dashboard',
+    icon: <InboxIcon />,
+  },
+]
+
 export default function MiniDrawer() {
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -123,7 +141,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            The lab
           </Typography>
         </Toolbar>
       </AppBar>
@@ -139,11 +157,11 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['About', 'Dashboard'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+          {routes.map(({ label, path, icon }) => (
+            <ListItem key={label} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 component={Link}
-                to={text === 'Inbox' ? '/' : text.toLowerCase()}
+                to={path}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
@@ -157,9 +175,9 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icon}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={label} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}

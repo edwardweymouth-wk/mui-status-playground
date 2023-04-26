@@ -2,6 +2,7 @@ import * as React from 'react'
 import { styled, Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import { VerticalLinearStepper } from './Tracker'
 
 const DrawerHeader = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
@@ -19,7 +20,7 @@ export default function RouterStack() {
       <Routes>
         <Route>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="linear-stepper" element={<VerticalLinearStepper />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
@@ -33,14 +34,6 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-    </div>
-  )
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
     </div>
   )
 }

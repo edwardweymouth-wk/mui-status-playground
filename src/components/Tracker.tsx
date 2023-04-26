@@ -118,7 +118,7 @@ function InProgressForm() {
   )
 }
 
-export default function VerticalLinearStepper() {
+export function VerticalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
   const [assignee, setAssignee] = React.useState('')
 
