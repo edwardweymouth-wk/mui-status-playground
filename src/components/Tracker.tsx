@@ -23,7 +23,11 @@ import Typography from '@mui/material/Typography'
 const defaultValue = { assignee: '' }
 const SomeContext = React.createContext(defaultValue)
 
-function AssigneeSelect({ handleChange }: { handleChange: any }) {
+function AssigneeSelect({
+  handleChange,
+}: {
+  handleChange: (event: SelectChangeEvent) => void
+}) {
   const { assignee } = React.useContext(SomeContext)
 
   return (
@@ -73,7 +77,11 @@ function ReviewerSelect() {
   )
 }
 
-function AssigneeForm({ handleChange }: { handleChange: any }) {
+function AssigneeForm({
+  handleChange,
+}: {
+  handleChange: (event: SelectChangeEvent) => void
+}) {
   return (
     <Box component="form" noValidate autoComplete="off">
       <AssigneeSelect handleChange={handleChange} />
@@ -110,7 +118,7 @@ function InProgressForm() {
   )
 }
 
-export default function VerticalLinearStepper() {
+export function VerticalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0)
   const [assignee, setAssignee] = React.useState('')
 
