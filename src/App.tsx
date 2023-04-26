@@ -16,16 +16,9 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { Link } from 'react-router-dom'
 
-import RouterStack from './components/RouterStack'
-
-interface Route {
-  path: string
-  label: string
-  icon: React.ReactNode
-}
+import { routes, RouterStack } from './components/RouterStack'
 
 const drawerWidth = 240
 
@@ -97,19 +90,6 @@ const Drawer = styled(MuiDrawer, {
     '& .MuiDrawer-paper': closedMixin(theme),
   }),
 }))
-
-const routes: Array<Route> = [
-  {
-    label: 'Linear stepper',
-    path: '/linear-stepper',
-    icon: <InboxIcon />,
-  },
-  {
-    path: '/dashboard',
-    label: 'Dashboard',
-    icon: <InboxIcon />,
-  },
-]
 
 export default function MiniDrawer() {
   const theme = useTheme()
