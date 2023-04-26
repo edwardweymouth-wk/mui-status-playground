@@ -6,6 +6,8 @@ import { VerticalLinearStepper } from './components/Tracker'
 import BasicTabs from './components/Tabs'
 import WorkflowAudit from './components/WorkflowAudit'
 
+const baseUrl = '/mui-status-playground'
+
 export interface Route {
   path: string
   label: string
@@ -16,18 +18,18 @@ export interface Route {
 export const routes: Array<Route> = [
   {
     label: 'Linear stepper',
-    path: '/linear-stepper',
+    path: `${baseUrl}/linear-stepper`,
     icon: <Checklist />,
     element: <VerticalLinearStepper />,
   },
   {
-    path: '/tabs',
+    path: `${baseUrl}/tabs`,
     label: 'Tabs',
     icon: <LibraryBooks />,
     element: <BasicTabs />,
   },
   {
-    path: '/workflow-audit',
+    path: `${baseUrl}/workflow-audit`,
     label: 'Workflow Audit',
     icon: <LibraryBooks />,
     element: <WorkflowAudit />,

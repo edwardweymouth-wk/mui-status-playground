@@ -18,7 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { Link } from 'react-router-dom'
 
-import { routes, RouterStack } from './components/RouterStack'
+import { RouterStack } from './components/RouterStack'
+import { routes } from './routes'
 
 const drawerWidth = 240
 
