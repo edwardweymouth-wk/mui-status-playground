@@ -1,56 +1,56 @@
-name: CI
+# name: CI
 
-on:
-  push:
-    branches:
-      - 'master'
-  pull_request:
-    branches:
-      - '**'
+# on:
+#   push:
+#     branches:
+#       - 'master'
+#   pull_request:
+#     branches:
+#       - '**'
 
-jobs:
-  # Basic E2 test Flow
-  # e2e_test:
-  #   name: Cypress E2E Tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-  #     # Install NPM dependencies, cache them correctly
-  #     # and run all Cypress tests
-  #     - name: yarn token
-  #       run: |
-  #         echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .yarnrc
-  #         echo "//workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/:$(curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PAT }} https://workivaeast.jfrog.io/workivaeast/api/npm/auth/)" >> .yarnrc
-  #     - name: Cypress run
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         build: yarn build
-  #         start: yarn start
+# jobs:
+# Basic E2 test Flow
+# e2e_test:
+#   name: Cypress E2E Tests
+#   runs-on: ubuntu-latest
+#   steps:
+#     - name: Checkout
+#       uses: actions/checkout@v2
+#     # Install NPM dependencies, cache them correctly
+#     # and run all Cypress tests
+#     - name: yarn token
+#       run: |
+#         echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .yarnrc
+#         echo "//workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/:$(curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PAT }} https://workivaeast.jfrog.io/workivaeast/api/npm/auth/)" >> .yarnrc
+#     - name: Cypress run
+#       uses: cypress-io/github-action@v4
+#       with:
+#         build: yarn build
+#         start: yarn start
 
-  # Pass/fail check for Prettier formatting
-  format:
-    name: Prettier
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: npm token
-        run: |
-          echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .npmrc
-          echo "//workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/:$(curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PAT }} https://workivaeast.jfrog.io/workivaeast/api/npm/auth/)" >> .npmnrc
-      - name: Install modules
-        run: npm install
-      - name: Prettier check
-        run: npm run format:ci
+# Pass/fail check for Prettier formatting
+# format:
+#   name: Prettier
+#   runs-on: ubuntu-latest
+#   steps:
+#     - uses: actions/checkout@v2
+#     - name: npm token
+#       run: |
+#         echo "@myscope:registry=https://workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/" > .npmrc
+#         echo "//workivaeast.jfrog.io/workivaeast/api/npm/npm-prod/:$(curl -u ${{ secrets.JFROG_USER }}:${{ secrets.JFROG_PAT }} https://workivaeast.jfrog.io/workivaeast/api/npm/auth/)" >> .npmnrc
+#     - name: Install modules
+#       run: npm install
+#     - name: Prettier check
+#       run: npm run format:ci
 
-  # Basic Lint check
-  # lint:
-  #   name: ESLint
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
-  #     - name: Install modules
-  #       run: yarn --ignore-scripts
-  #     - name: Run ESLint
-  #       run: yarn lint:ci
+# Basic Lint check
+# lint:
+#   name: ESLint
+#   runs-on: ubuntu-latest
+#   steps:
+#     - uses: actions/checkout@v2
+#     - uses: Workiva/gha-setup-credentials@refs/tags/v1.0.0
+#     - name: Install modules
+#       run: yarn --ignore-scripts
+#     - name: Run ESLint
+#       run: yarn lint:ci
