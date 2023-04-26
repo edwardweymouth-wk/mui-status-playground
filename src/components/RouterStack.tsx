@@ -1,12 +1,9 @@
 import * as React from 'react'
 import { styled, Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
-import Checklist from '@mui/icons-material/Checklist'
-import LibraryBooks from '@mui/icons-material/LibraryBooks'
 import { Routes, Route, Outlet, Link } from 'react-router-dom'
 
-import { VerticalLinearStepper } from './Tracker'
-import BasicTabs from './Tabs'
+import { routes } from '../routes'
 
 const DrawerHeader = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
@@ -16,28 +13,6 @@ const DrawerHeader = styled('div')(({ theme }: { theme: Theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }))
-
-interface Route {
-  path: string
-  label: string
-  icon: React.ReactNode
-  element: React.ReactNode
-}
-
-export const routes: Array<Route> = [
-  {
-    label: 'Linear stepper',
-    path: '/linear-stepper',
-    icon: <Checklist />,
-    element: <VerticalLinearStepper />,
-  },
-  {
-    path: '/tabs',
-    label: 'Tabs',
-    icon: <LibraryBooks />,
-    element: <BasicTabs />,
-  },
-]
 
 export function RouterStack() {
   return (

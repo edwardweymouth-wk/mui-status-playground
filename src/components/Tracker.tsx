@@ -21,9 +21,9 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
 const defaultValue = { assignee: '' }
-const SomeContext = React.createContext(defaultValue)
+export const SomeContext = React.createContext(defaultValue)
 
-function AssigneeSelect({
+export function AssigneeSelect({
   handleChange,
 }: {
   handleChange: (event: SelectChangeEvent) => void
@@ -50,7 +50,7 @@ function AssigneeSelect({
   )
 }
 
-function ReviewerSelect() {
+export function ReviewerSelect() {
   const [reviewer, setReviewer] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent) => {

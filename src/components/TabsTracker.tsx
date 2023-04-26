@@ -2,7 +2,11 @@ import * as React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
+import { SelectChangeEvent } from '@mui/material/Select'
 import Box from '@mui/material/Box'
+
+import { AssigneeSelect, ReviewerSelect } from './Tracker'
+import { ActionTypes, Action } from '../context'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -37,64 +41,65 @@ function a11yProps(index: number) {
   }
 }
 
-const steps = [
-  {
-    key: 0,
-    label: 'Created',
-    tabContent: <div>Item One</div>,
-  },
-  {
-    key: 1,
-    label: 'Assigned',
-    tabContent: <div>Item Two</div>,
-  },
-  {
-    key: 2,
-    label: 'In Progress',
-    tabContent: <div>Item Three</div>,
-  },
-  {
-    key: 3,
-    label: 'In Review',
-    tabContent: <div>Item Three</div>,
-  },
-  {
-    key: 4,
-    label: 'Complete',
-    tabContent: <div>Item Three</div>,
-  },
-]
-
 enum TestStates {
   vertical = 'vertical',
   horizontal = 'horizontal',
 }
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0)
+export default function TabsTracker({
+  dispatch,
+  activeTab,
+}: {
+  dispatch: React.Dispatch<Action>
+  activeTab: number
+}) {
   const [testState] = React.useState<TestStates>(TestStates.horizontal)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
+    dispatch({ type: 'setActiveTab', payload: newValue })
   }
 
+  const handleAssigneeChange = (event: SelectChangeEvent) => {
+    dispatch({ type: ActionTypes.UPDATE_ASSIGNEE, payload: event.target.value })
+  }
+
+  const steps = [
+    {
+      key: 0,
+      label: 'Created',
+      tabContent: (
+        <AssigneeSelect handleChange={(e) => handleAssigneeChange(e)} />
+      ),
+    },
+    {
+      key: 1,
+      label: 'Assigned',
+      tabContent: <ReviewerSelect />,
+    },
+    {
+      key: 2,
+      label: 'In Progress',
+      tabContent: <div>Item Three</div>,
+    },
+    {
+      key: 3,
+      label: 'In Review',
+      tabContent: <div>Item Three</div>,
+    },
+    {
+      key: 4,
+      label: 'Complete',
+      tabContent: <div>Item Three</div>,
+    },
+  ]
+
   return (
-    // for vertical tabs
-    // <Box
-    //   sx={{
-    //     flexGrow: 1,
-    //     bgcolor: 'background.paper',
-    //     display: 'flex',
-    //     height: 224,
-    //   }}
-    // >
     <Box sx={{ width: '100%' }}>
-      {/* remove this box for vertical tabs */}
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           orientation={testState}
           centered={true}
-          value={value}
+          value={activeTab}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
@@ -104,7 +109,7 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       {steps.map(({ key, tabContent }) => (
-        <TabPanel key={key} value={value} index={key}>
+        <TabPanel key={key} value={activeTab} index={key}>
           {tabContent}
         </TabPanel>
       ))}
