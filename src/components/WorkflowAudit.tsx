@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import TabsTracker from './TabsTracker'
 import { SomeContext } from './Tracker'
+import { StaticStatusService } from '../services'
 
 import {
   ExpandMoreProps,
