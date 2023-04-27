@@ -56,7 +56,7 @@ export default function TabsTracker({
   const [testState] = React.useState<TestStates>(TestStates.horizontal)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    dispatch({ type: 'setActiveTab', payload: newValue })
+    dispatch({ type: ActionTypes.SET_ACTIVE_TAB, payload: newValue })
   }
 
   const handleAssigneeChange = (event: SelectChangeEvent) => {

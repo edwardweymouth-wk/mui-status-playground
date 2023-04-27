@@ -2,7 +2,7 @@ import * as React from 'react'
 import Checklist from '@mui/icons-material/Checklist'
 import LibraryBooks from '@mui/icons-material/LibraryBooks'
 
-import { VerticalLinearStepper } from './components/Tracker'
+import VerticalLinearStepper from './components/Tracker'
 import BasicTabs from './components/Tabs'
 import WorkflowAudit from './components/WorkflowAudit'
 

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { styled, Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import { Routes, Route, Outlet, Link } from 'react-router-dom'
