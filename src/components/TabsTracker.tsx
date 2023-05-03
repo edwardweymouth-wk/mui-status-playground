@@ -6,7 +6,13 @@ import { SelectChangeEvent } from '@mui/material/Select'
 import Box from '@mui/material/Box'
 
 import { AssigneeSelect, ReviewerSelect } from './Tracker'
-import { ActionTypes, Action } from '../context'
+import { ActionTypes } from '../context'
+import { useAppSelector, useAppDispatch } from '../redux/hooks'
+
+import {
+  selectActiveTab,
+  setActiveTab,
+} from '../redux/features/workflow/workflowSlice'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -46,21 +52,16 @@ enum TestStates {
   horizontal = 'horizontal',
 }
 
-export default function TabsTracker({
-  dispatch,
-  activeTab,
-}: {
-  dispatch: React.Dispatch<Action>
-  activeTab: number
-}) {
-  const [testState] = React.useState<TestStates>(TestStates.horizontal)
+export default function TabsTracker() {
+  const dispatch = useAppDispatch()
+  const activeTab = useAppSelector(selectActiveTab)
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    dispatch({ type: ActionTypes.SET_ACTIVE_TAB, payload: newValue })
+    dispatch(setActiveTab(newValue))
   }
 
-  const handleAssigneeChange = (event: SelectChangeEvent) => {
-    dispatch({ type: ActionTypes.UPDATE_ASSIGNEE, payload: event.target.value })
+  const handleAssigneeChange = (_event: SelectChangeEvent) => {
+    ;() => console.log('FIX ME')
   }
 
   const steps = [
@@ -97,14 +98,18 @@ export default function TabsTracker({
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
-          orientation={testState}
           centered={true}
           value={activeTab}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
           {steps.map((step) => (
-            <Tab key={step.key} label={step.label} {...a11yProps(step.key)} />
+            <Tab
+              sx={{ flex: 1 }}
+              key={step.key}
+              label={step.label}
+              {...a11yProps(step.key)}
+            />
           ))}
         </Tabs>
       </Box>

@@ -21,7 +21,7 @@ export function RouterStack() {
         <Route>
           <Route index element={<Home />} />
           {routes.map(({ path, element }) => (
-            <Route path={path.replace('/', '')} element={element} />
+            <Route key={path} path={path.replace('/', '')} element={element} />
           ))}
           <Route path="*" element={<NoMatch />} />
         </Route>

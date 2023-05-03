@@ -27,7 +27,6 @@ export enum ActionTypes {
 
 export interface Workflow {
   status: WorkflowStatus
-  action: () => void
 }
 
 export interface ExpandMoreProps extends IconButtonProps {

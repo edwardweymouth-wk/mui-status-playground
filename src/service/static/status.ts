@@ -283,4 +283,4 @@ class StaticStatusService implements StatusService {
   }
 }
 
-export default StaticStatusService
+export { StaticStatusService }
