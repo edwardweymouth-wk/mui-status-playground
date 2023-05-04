@@ -1,0 +1,65 @@
+{
+  "solutionStrategy": "Audit-Procedure",
+  "states": [
+    {
+      "id": "52344940-69e5-461b-b8d5-887ad67be86f",
+      "label": "Created",
+      "transitions": [
+        {
+          "label": "Assign",
+          "destinationStateId": "56784d99-0339-4ec1-a7a4-20572afc82b4",
+          "id": "5d1ff0f3-8242-4da2-876e-00633c365de4",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "56784d99-0339-4ec1-a7a4-20572afc82b4",
+      "label": "Assigned",
+      "transitions": [
+        {
+          "label": "Close",
+          "destinationStateId": "52344940-69e5-461b-b8d5-887ad67be86f",
+          "color": "secondary",
+          "style": "outlined",
+          "actions": []
+        },
+        {
+          "label": "Start Work",
+          "destinationStateId": "96ae6785-9b46-4e73-83df-616fbff2b6fd",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "96ae6785-9b46-4e73-83df-616fbff2b6fd",
+      "label": "In progress",
+      "transitions": [
+        {
+          "label": "Send to review",
+          "destinationStateId": "3d66b120-b313-426c-9e57-d519dcca45bf",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "3d66b120-b313-426c-9e57-d519dcca45bf",
+      "label": "In review",
+      "transitions": [
+        {
+          "label": "Complete",
+          "destinationStateId": "ba05079e-2463-4c08-a7d7-584e109156ca",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "ba05079e-2463-4c08-a7d7-584e109156ca",
+      "label": "Complete",
+      "transitions": []
+    }
+  ]
+}

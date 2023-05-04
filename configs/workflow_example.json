@@ -1,0 +1,99 @@
+{
+  "solutionStrategy": "Audit-Procedure",
+  "states": [
+    {
+      "id": "52344940-69e5-461b-b8d5-887ad67be86f",
+      "label": "Created",
+      "transitions": [
+        {
+          "label": "Assign",
+          "destinationStateId": "56784d99-0339-4ec1-a7a4-20572afc82b4",
+          "id": "97ff5916-b796-4ccd-a71b-58c537345021",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "56784d99-0339-4ec1-a7a4-20572afc82b4",
+      "label": "Assigned",
+      "transitions": [
+        {
+          "label": "Start work",
+          "destinationStateId": "96ae6785-9b46-4e73-83df-616fbff2b6fd",
+          "id": "a00cdc39-9035-40c7-8e76-85514f30187d",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "96ae6785-9b46-4e73-83df-616fbff2b6fd",
+      "label": "In progress",
+      "transitions": [
+        {
+          "label": "Close",
+          "destinationStateId": "52344940-69e5-461b-b8d5-887ad67be86f",
+          "id": "debdd2db-5a1a-4017-ae54-13401310fb34",
+          "color": "secondary",
+          "style": "outlined",
+          "actions": []
+        },
+        {
+          "label": "Send to review",
+          "destinationStateId": "3d66b120-b313-426c-9e57-d519dcca45bf",
+          "id": "e24404cf-788a-445f-a590-3767e302d312",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "3d66b120-b313-426c-9e57-d519dcca45bf",
+      "label": "In review",
+      "transitions": [
+        {
+          "label": "Restart progress",
+          "destinationStateId": "96ae6785-9b46-4e73-83df-616fbff2b6fd",
+          "id": "c361d923-faa5-4ef6-b0f2-1172ea8a850c",
+          "color": "secondary",
+          "style": "outlined",
+          "actions": []
+        },
+        {
+          "label": "Complete",
+          "destinationStateId": "ba05079e-2463-4c08-a7d7-584e109156ca",
+          "id": "fd170ecc-4ca4-4cb5-91c1-d73f66b84a2f",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "ba05079e-2463-4c08-a7d7-584e109156ca",
+      "label": "Complete",
+      "transitions": [
+        {
+          "label": "Restart review",
+          "destinationStateId": "3d66b120-b313-426c-9e57-d519dcca45bf",
+          "id": "4c4721fc-e47a-456a-8680-f79afb07ac61",
+          "color": "secondary",
+          "style": "outlined",
+          "actions": []
+        },
+        {
+          "label": "Close",
+          "destinationStateId": "facddd65-59f3-4f29-a8ed-d99e34626261",
+          "id": "d519098e-e683-45b7-9a55-d36c8b8d04ec",
+          "color": "success",
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "facddd65-59f3-4f29-a8ed-d99e34626261",
+      "label": "Closed",
+      "transitions": [],
+      "hidden": true
+    }
+  ]
+}
