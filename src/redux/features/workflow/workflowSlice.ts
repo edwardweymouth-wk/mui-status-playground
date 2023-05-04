@@ -79,10 +79,20 @@ export const workflowSlice = createSlice({
         activeTab: action.payload,
       }
     },
+    reset: (state) => {
+      return {
+        ...state,
+        currentStatus: WorkflowStatus.Created,
+        activeTab: 0,
+        currentWorkflow: {
+          status: WorkflowStatus.Created,
+        },
+      }
+    },
   },
 })
 
-export const { assign, startWork, startReview, complete, setActiveTab } =
+export const { assign, startWork, startReview, complete, setActiveTab, reset } =
   workflowSlice.actions
 
 export const selectStatus = (state: RootState) => state.workflow.currentStatus

@@ -5,8 +5,9 @@ import Typography from '@mui/material/Typography'
 import { SelectChangeEvent } from '@mui/material/Select'
 import Box from '@mui/material/Box'
 
-import { AssigneeSelect, ReviewerSelect } from './Tracker'
-import { ActionTypes } from '../context'
+import { ReviewerSelect } from './Tracker'
+import { CreatedForm } from './CreatedForm'
+
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 
 import {
@@ -47,11 +48,6 @@ function a11yProps(index: number) {
   }
 }
 
-enum TestStates {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-}
-
 export default function TabsTracker() {
   const dispatch = useAppDispatch()
   const activeTab = useAppSelector(selectActiveTab)
@@ -60,17 +56,11 @@ export default function TabsTracker() {
     dispatch(setActiveTab(newValue))
   }
 
-  const handleAssigneeChange = (_event: SelectChangeEvent) => {
-    ;() => console.log('FIX ME')
-  }
-
   const steps = [
     {
       key: 0,
       label: 'Created',
-      tabContent: (
-        <AssigneeSelect handleChange={(e) => handleAssigneeChange(e)} />
-      ),
+      tabContent: <CreatedForm />,
     },
     {
       key: 1,

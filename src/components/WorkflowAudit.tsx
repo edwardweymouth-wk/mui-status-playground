@@ -9,15 +9,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import TabsTracker from './TabsTracker'
 import { SomeContext } from './Tracker'
-import { StaticStatusService } from '../service'
+// import { StaticStatusService } from '../service'
 
-import {
-  ExpandMoreProps,
-  WorkflowStatus,
-  Action,
-  ActionTypes,
-  Workflow,
-} from '../context'
+import { ExpandMoreProps, WorkflowStatus, Workflow } from '../context'
 
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 
@@ -26,8 +20,7 @@ import {
   startWork,
   startReview,
   complete,
-  selectStatus,
-  selectActiveTab,
+  reset,
   selectAssignee,
 } from '../redux/features/workflow/workflowSlice'
 
@@ -47,14 +40,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function WorkflowAudit() {
   const [expanded, setExpanded] = React.useState(false)
-  // const [state, dispatch] = React.useReducer(reducer, initialState)
-  const status = useAppSelector(selectStatus)
-  const activeTab = useAppSelector(selectActiveTab)
-  const assignee = useAppSelector(selectAssignee)
+
   const currentWorkflow = useAppSelector(
     (state) => state.workflow.currentWorkflow
   )
-  const dispatch = useAppDispatch()
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -73,8 +62,6 @@ export default function WorkflowAudit() {
         handleExpandClick={handleExpandClick}
         expanded={expanded}
         currentWorkflowState={currentWorkflow}
-        dispatch={dispatch}
-        assignee={assignee}
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <TabsTracker />
@@ -87,43 +74,42 @@ function ActionsBar({
   handleExpandClick,
   expanded,
   currentWorkflowState,
-  dispatch,
-  assignee,
 }: {
   handleExpandClick: () => void
   expanded: boolean
   currentWorkflowState: Workflow
-  dispatch: React.Dispatch<Action>
-  assignee: string
 }) {
+  const assignee = useAppSelector(selectAssignee)
+  const dispatch = useAppDispatch()
+
   const rightCapComponentCache = {
     [WorkflowStatus.Created]: (
       <RightCap
-        transitionCallback={() => dispatch({ type: ActionTypes.ASSIGN })}
+        transitionCallback={() => dispatch(assign())}
         transitionLabel="Assign"
       />
     ),
     [WorkflowStatus.Assigned]: (
       <RightCap
-        transitionCallback={() => dispatch({ type: ActionTypes.START_WORK })}
+        transitionCallback={() => dispatch(startWork())}
         transitionLabel="Start Work"
       />
     ),
     [WorkflowStatus.InProgress]: (
       <RightCap
-        transitionCallback={() => dispatch({ type: ActionTypes.START_REVIEW })}
+        transitionCallback={() => dispatch(startReview())}
         transitionLabel="Start Review"
       />
     ),
     [WorkflowStatus.InReview]: (
       <RightCap
-        transitionCallback={() => dispatch({ type: ActionTypes.COMPLETE })}
+        transitionCallback={() => dispatch(complete())}
         transitionLabel="Complete"
       />
     ),
     [WorkflowStatus.Completed]: (
       <RightCap
-        transitionCallback={() => dispatch({ type: ActionTypes.RESET })}
+        transitionCallback={() => dispatch(reset())}
         transitionLabel="Restart"
       />
     ),
